@@ -5,84 +5,52 @@
  * Based on "From C to C++ course - 2002"
 */
 
-#include <string.h>
-
-#include "screen.h"
 #include "keyboard.h"
-#include "timer.h"
+#include "mylib.h"
+#include "screen.h"
 
-int x = 34, y = 12;
-int incX = 1, incY = 1;
+int main() {
+  SnakeP *cobra = NULL;
+  int tecla = 0, pontos = 0, dirX = 1, dirY = 0, intervalo = 100;
+  FILE *arquivo;
+  Jogador jogador;
 
-void printHello(int nextX, int nextY)
-{
-    screenSetColor(CYAN, DARKGRAY);
-    screenGotoxy(x, y);
-    printf("           ");
-    x = nextX;
-    y = nextY;
-    screenGotoxy(x, y);
-    printf("Hello World");
-}
+  screenInit(1);
+  keyboardInit();
+  screenUpdate();
 
-void printKey(int ch)
-{
-    screenSetColor(YELLOW, DARKGRAY);
-    screenGotoxy(35, 22);
-    printf("Key code :");
-
-    screenGotoxy(34, 23);
-    printf("            ");
-    
-    if (ch == 27) screenGotoxy(36, 23);
-    else screenGotoxy(39, 23);
-
-    printf("%d ", ch);
-    while (keyhit())
-    {
-        printf("%d ", readch());
-    }
-}
-
-int main() 
-{
-    static int ch = 0;
-
-    screenInit(1);
-    keyboardInit();
-    timerInit(50);
-
-    printHello(x, y);
-    screenUpdate();
-
-    while (ch != 10) //enter
-    {
-        // Handle user input
-        if (keyhit()) 
-        {
-            ch = readch();
-            printKey(ch);
-            screenUpdate();
+  while (tecla != SAIR) {
+    if (keyhit()) {
+      tecla = readch();
+      switch (tecla) {
+      case CIMA:
+        if (dirY != 1) {
+          dirX = 0;
+          dirY = -1;
         }
-
-        // Update game state (move elements, verify collision, etc)
-        if (timerTimeOver() == 1)
-        {
-            int newX = x + incX;
-            if (newX >= (MAXX -strlen("Hello World") -1) || newX <= MINX+1) incX = -incX;
-            int newY = y + incY;
-            if (newY >= MAXY-1 || newY <= MINY+1) incY = -incY;
-
-            printKey(ch);
-            printHello(newX, newY);
-
-            screenUpdate();
+        break;
+      case BAIXO:
+        if (dirY != -1) {
+          dirX = 0;
+          dirY = 1;
         }
+        break;
+      case ESQUERDA:
+        if (dirX != 1) {
+          dirX = -1;
+          dirY = 0;
+        }
+        break;
+      case DIREITA:
+        if (dirX != -1) {
+          dirX = 1;
+          dirY = 0;
+        }
+        break;
+      }
+      screenUpdate();
+      }
     }
-
-    keyboardDestroy();
-    screenDestroy();
-    timerDestroy();
-
-    return 0;
+  }
+  return 0;
 }
