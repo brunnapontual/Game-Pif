@@ -32,3 +32,26 @@ Snake Snack é um jogo clássico da cobrinha desenvolvido em linguagem C, com um
 * **Placar:** Acompanhe sua pontuação durante a partida.
 * **Ranking:** Adquira as maiores pontuações para ficar no top 5
 
+# Instruções para Compilação e Execução
+## Requisitos 
+- GCC (GNU Compiler Collection) 
+- Make
+
+#### Compilar e executar o jogo:
+```http
+  make play
+```
+#### Compilar o jogo:
+```http
+  make
+```
+#### Executar o jogo: 
+Assumindo que o jogo já foi compilado anteriormente
+```http
+  make run
+```
+#### Limpar arquivos compilados:
+```http
+  make clean
+```
+
