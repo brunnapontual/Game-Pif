@@ -11,9 +11,6 @@ Programação Imperativa e Funcional - 2024.2
 
 [CESAR School](https://www.cesar.school/)
 
-## Título do Projeto
-
-
 # Snake Snack                                                      
                                                                                                                                                                                 
 
@@ -33,9 +30,10 @@ Snake Snack é um jogo clássico da cobrinha desenvolvido em linguagem C, com um
 * **Ranking:** Adquira as maiores pontuações para ficar no top 5
 
 # Instruções para Compilação e Execução
-## Requisitos 
-- GCC (GNU Compiler Collection) 
-- Make
+> [!IMPORTANT]
+> Requisitos:
+> GCC (GNU Compiler Collection);
+> Make
 
 #### Compilar e executar o jogo:
 ```http
