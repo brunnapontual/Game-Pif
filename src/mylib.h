@@ -12,11 +12,47 @@
 #define ESQUERDA 97
 #define DIREITA 100
 
+typedef struct {
+    char nome[20];
+    int pontos;
+} Jogador;
+
 typedef struct SnakeP {
     int posX, posY;
     struct SnakeP *prox;
 } SnakeP;
 
-void movimentoCobra(SnakeP **cabeca, int x, int y);
+typedef enum {
+    FRUTA_COLORIDA,
+    FRUTA_PRETO
+} TipoFruta;
 
-#endif 
+typedef struct {
+    int posX, posY;
+    TipoFruta tipo;
+} Fruta;
+
+typedef struct Placar {
+    Jogador jogador;
+    struct Placar *prox;
+} Placar;
+
+void desenharCobra(SnakeP *cabeca);
+void movimentoCobra(SnakeP **cabeca, int x, int y);
+void aumentarTamanho(SnakeP **cabeca, int x, int y);
+void diminuirTamanho(SnakeP **cabeca);
+void desenharFruta(int x, int y, TipoFruta tipo);
+void novaFruta(int *x, int *y, TipoFruta *tipo);
+void verificarFrutaComida(SnakeP **cabeca, Fruta *fruta);
+int verificarColisao(SnakeP *cabeca, int x, int y);
+void GameOver();
+void atualizarPlacar(int pontos);
+void imprimirRanking(Placar *cabeca);
+void freePlacar(Placar **cabeca);
+void atualizarPlacar(int pontos);
+void salvarPlacar(Placar *cabeca, FILE *arquivo);
+void adicionarPlacar(Placar **cabeca, Jogador jogador);
+void freeCobra(SnakeP **cabeca);
+void limparCobra(SnakeP *cabeca);
+
+#endif
