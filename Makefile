@@ -1,4 +1,4 @@
-TARGET = SnackSnake
+TARGET = SnakeSnack
 
 CC = gcc
 
