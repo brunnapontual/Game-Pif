@@ -26,7 +26,7 @@ Snake Snack é um jogo clássico da cobrinha desenvolvido em linguagem C, com um
 **Funcionalidades:**
 
 * **Movimentação da cobra:** Use as teclas direcionais para guiar a cobra pela tela.
-* **Diferentes snacks:** Coma snacks de 1, 5 e 10, -1, -5 e -10 pontos para aumentar ou diminuir sua pontuação.
+* **Diferentes snacks:** Coma snacks para aumentar ou diminuir sua pontuação.
 * **Aumento de dificuldade:** A velocidade da cobra aumenta conforme ela cresce, tornando o jogo mais desafiador.
 * **Fim de jogo:** O jogo termina se a cobra colidir com as bordas ou com o próprio corpo.
 * **Placar:** Acompanhe sua pontuação durante a partida.
