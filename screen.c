@@ -4,7 +4,9 @@
  * Author: Tiago Barros
  * Based on "From C to C++ course - 2002"
 */
+
 #include "screen.h"
+
 void screenDrawBorders() 
 {
     char hbc = BOX_HLINE;
@@ -15,6 +17,7 @@ void screenDrawBorders()
     
     screenGotoxy(MINX, MINY);
     printf("%c", BOX_UPLEFT);
+
     for (int i=MINX+1; i<MAXX; i++)
     {
         screenGotoxy(i, MINY);
@@ -22,6 +25,7 @@ void screenDrawBorders()
     }
     screenGotoxy(MAXX, MINY);
     printf("%c", BOX_UPRIGHT);
+
     for (int i=MINY+1; i<MAXY; i++)
     {
         screenGotoxy(MINX, i);
@@ -29,6 +33,7 @@ void screenDrawBorders()
         screenGotoxy(MAXX, i);
         printf("%c", vbc);
     }
+
     screenGotoxy(MINX, MAXY);
     printf("%c", BOX_DWNLEFT);
     for (int i=MINX+1; i<MAXX; i++)
@@ -38,9 +43,11 @@ void screenDrawBorders()
     }
     screenGotoxy(MAXX, MAXY);
     printf("%c", BOX_DWNRIGHT);
+
     screenBoxDisable();
     
 }
+
 void screenInit(int drawBorders)
 {
     screenClear();
@@ -48,6 +55,7 @@ void screenInit(int drawBorders)
     screenHomeCursor();
     screenHideCursor();
 }
+
 void screenDestroy()
 {
     printf("%s[0;39;49m", ESC); // Reset colors
@@ -56,6 +64,7 @@ void screenDestroy()
     screenHomeCursor();
     screenShowCursor();
 }
+
 void screenGotoxy(int x, int y)
 {
     x = ( x<0 ? 0 : x>=MAXX ? MAXX-1 : x);
@@ -63,13 +72,16 @@ void screenGotoxy(int x, int y)
     
     printf("%s[f%s[%dB%s[%dC", ESC, ESC, y, ESC, x);
 }
+
 void screenSetColor( screenColor fg, screenColor bg)
 {
     char atr[] = "[0;";
+
     if ( fg > LIGHTGRAY )
     {
         atr[1] = '1';
 		fg -= 8;
     }
+
     printf("%s%s%d;%dm", ESC, atr, fg+30, bg+40);
 }

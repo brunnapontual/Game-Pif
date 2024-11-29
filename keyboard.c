@@ -4,11 +4,16 @@
  * Author: Tiago Barros
  * Based on "From C to C++ course - 2002"
 */
+
 #include <termios.h>
 #include <unistd.h>
+
 #include "keyboard.h"
+
 static struct termios initialSettings, newSettings;
 static int peekCharacter;
+
+
 void keyboardInit()
 {
     tcgetattr(0,&initialSettings);
@@ -20,14 +25,17 @@ void keyboardInit()
     newSettings.c_cc[VTIME] = 0;
     tcsetattr(0, TCSANOW, &newSettings);
 }
+
 void keyboardDestroy()
 {
     tcsetattr(0, TCSANOW, &initialSettings);
 }
+
 int keyhit()
 {
     unsigned char ch;
     int nread;
+
     if (peekCharacter != -1) return 1;
     
     newSettings.c_cc[VMIN]=0;
@@ -44,9 +52,11 @@ int keyhit()
     
     return 0;
 }
+
 int readch()
 {
     char ch;
+
     if(peekCharacter != -1)
     {
         ch = peekCharacter;
